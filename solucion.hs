@@ -64,21 +64,21 @@ calcularAlimento :: Raton -> Integer
 calcularAlimento unRaton = ((peso unRaton) * (altura unRaton)) - (cantidadBigotes unRaton)
 
 marioBros:: String-> Entrenamiento
-marioBros arteMarcial = agregarANombre "Super Mario " .(comprobarYAgregar  arteMarcial)                  
+marioBros arteMarcial = agregarANombre "Super Mario " .(comprobarYAgregar  arteMarcial). comprobarYAgregar "Saltar "                  
 
 enseñarArteMarcial :: String -> Entrenamiento
 enseñarArteMarcial arteMarcial unPollo = unPollo{ artesMarcialesDominados = arteMarcial : (artesMarcialesDominados unPollo)}
 
 comprobarYAgregar :: String -> Entrenamiento
-comprobarYAgregar arteMarcial unPollo | elem arteMarcial (artesMarcialesDominados unPollo) == False = enseñarArteMarcial arteMarcial unPollo
+comprobarYAgregar arteMarcial unPollo | not(elem arteMarcial (artesMarcialesDominados unPollo))  = enseñarArteMarcial arteMarcial unPollo
                                       | otherwise = unPollo
 agregarANombre:: String -> Entrenamiento
 agregarANombre agregado unPollo =  unPollo { nombre = agregado ++ (nombre unPollo)}          
 
 --no entiendo como haria entrenar, porque no todos los entrenadores tienen la misma cantidad de parametro 
-entrenar:: Entrenador-> Entrenamiento
-entrenar unEntrenador unPollo = unEntrenador unPollo
+--entrenar:: Entrenador-> Entrenamiento
+--entrenar unEntrenador unPollo = unEntrenador unPollo
 
-elQueMasEnseña :: Entrenador -> Entrenador -> Pollo->String
-elQueMasEnseña unEntrenador otroEntrenador unPollo | length (artesMarcialesDominados (entrenar unEntrenador unPollo)) >  length (artesMarcialesDominados (entrenar otroEntrenador unPollo)) = "El primer entrenador enseña más"
-                                                   | otherwise = "El segundo entrenador enseña más"
+--elQueMasEnseña :: Entrenador -> Entrenador -> Pollo->String
+--elQueMasEnseña unEntrenador otroEntrenador unPollo | length (artesMarcialesDominados (entrenar unEntrenador unPollo)) >  length (artesMarcialesDominados (entrenar otroEntrenador unPollo)) = "El primer entrenador enseña más"
+   --                                                | otherwise = "El segundo entrenador enseña más"
